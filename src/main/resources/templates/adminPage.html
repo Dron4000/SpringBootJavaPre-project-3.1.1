@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div align="center">
+    <h2>List All Users</h2>
+    <h3><a href="/admin/new">New User</a></h3>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+        </tr>
+        <tr th:each="user : ${list}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.age}"></td>
+            <td><a th:href="@{/admin/edit/{id}(id=${user.id})}">Edit</a></td>
+            <td><a th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a></td>
+            <td><a th:href="@{admin/user/{id}(id=${user.id})}">AboutUser</a></td>
+        </tr>
+    </table>
+    <a th:href="@{/user}">User Information</a>
+    <br/>
+    <a th:href="@{/logout}">Logout</a>
+    <a href="javascript:history.back()">BACK</a>
+</div>
+</body>
+</html>

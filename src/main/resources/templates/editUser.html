@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-field {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    .form-field label {
+        margin-right: 8px;
+        min-width: 80px;
+        font-size: 16px;
+        font-weight: 700;
+    }
+    .form-field__input {
+        min-height: 32px;
+        border-radius: 5px;
+        padding: 8px;
+        border: 1px solid #111;
+    }
+    .action {
+        padding: 8px;
+        min-width: 160px;
+        background-color: #66bb6a;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: none;
+        cursor: pointer;
+        transition: .2s;
+    }
+    .action:hover {
+        background-color: #338a3e;
+    }
+    .check-wrapper {
+        display: flex;
+        margin-bottom: 24px;
+    }
+    .check-field {
+        display: flex;
+        align-items: center;
+    }
+    .check-field input {
+        margin: 0 0 0 16px;
+    }
+    .check-selection {
+        margin: 0 16px;
+        font-weight: 700;
+    }
+    .link-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 24px;
+    }
+    .link {
+        margin-right: 16px;
+        padding: 8px;
+        min-width: 160px;
+        background-color: #ffa726;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: none;
+        cursor: pointer;
+        text-decoration: none;
+        transition: .2s;
+    }
+    .link:nth-last-child(1) {
+        margin-right: 0;
+    }
+    .link:hover {
+        background-color: #c77800;
+    }
+</style>
+<body>
+<div align="center">
+    <h2>Edit User</h2>
+    <form class="form" th:action="@{/admin/edit/{id}(id=${user.id})}" th:object="${user}" method="post">
+        <div class="form-field">
+            <label for="name">Name:</label>
+            <input class="form-field__input" type="text" id="name" th:field="*{username}"/>
+        </div>
+        <div class="form-field">
+            <label for="email">Email:</label>
+            <input class="form-field__input" type="text" id="email" th:field="*{email}"/>
+        </div>
+        <div class="form-field">
+            <label for="pass">Password:</label>
+            <input class="form-field__input" type="text" id="pass" th:field="*{password}"/>
+        </div>
+        <div class="form-field">
+            <label for="age">Age:</label>
+            <input class="form-field__input" type="text" id="age" th:field="*{age}"/>
+        </div>
+
+        <div class="check-wrapper">
+            <div class="check-field">
+                <label for="check-user">User</label>
+                <input type="radio" id="check-user" name="roless" value="ROLE_USER"/>
+            </div>
+            <div class="check-selection">
+                <span>OR</span>
+            </div>
+            <div class="check-field">
+                <label for="check-admin">Admin</label>
+                <input type="radio" id="check-admin" name="roless" value="ROLE_ADMIN"/>
+            </div>
+        </div>
+
+        <button class="action" type="submit">Update User</button>
+    </form>
+    <div class="link-wrapper">
+        <a class="link" th:href="@{/logout}">Logout</a>
+        <a class="link" href="javascript:history.back()">Back</a>
+    </div>
+</div>
+</body>
+</html>
