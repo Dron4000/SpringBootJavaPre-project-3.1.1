@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -32,26 +31,24 @@ public class UserService implements UserDetailsService {
         userRepository.delete(user);
     }
 
-    public   void edit(User user){
-        userRepository.save(user);
-    }
+
 
     public   User getById(long id){
       return   userRepository.getById(id);
     }
 
 
-    public   User getUserByUserName(String name){
-         return  userRepository.getUserByUsername(name);
+    public   User getUserByEmail(String email_address){
+         return  userRepository.getUserByEmail(email_address);
     }
 
 
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = getUserByUserName(username);
-        if (user==null) throw new UsernameNotFoundException("Нет такого "+ username);
+    public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
+        User user = getUserByEmail(emailAddress);
+        if (user==null) throw new UsernameNotFoundException("Нет такого "+ emailAddress);
         return  user ;
     }
 }

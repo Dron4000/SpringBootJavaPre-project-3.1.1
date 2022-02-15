@@ -4,5 +4,10 @@
       "name": "jdbc.driver",
       "type": "java.lang.String",
       "description": "Description for jdbc.driver."
-  }
-] }
+    },
+    {
+      "name": "hibernate.format_sql",
+      "type": "java.lang.String",
+      "description": "Description for hibernate.format_sql."
+    }
+  ] }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <!-- Кодировка веб-страницы -->
     <meta charset="utf-8">
@@ -28,7 +29,7 @@
     <span class="navbar-brand font-weight-bold" th:text="${user.email}"></span>
     <span class="navbar-bran font-weight-bold text-white"
 
-          th:text="'with role: ' + ${#strings.toString(user.roles).replace('[','').replace(']','')}"></span>
+          th:text="'with roles: ' + ${#strings.toString(user.roles).replace('[','').replace(']','')}"></span>
     </span>
 
     <ul class="nav navbar-nav navbar-dark navbar-right sticky-top">
@@ -39,19 +40,19 @@
 </nav>
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-2 px-0 side">
-            <ul class="nav nav-pills flex-column">
-            <li class="nav-item" >
-                <a href="/user"  class="nav-link active">AboutUser</a>
-            </li>
-            </ul>
+        <nav class="col-md-2 sidebar">
+            <div>
+                <a class="btn btn-outline-primary btn-block" href="/admin" role="button">Admin</a>
+                <a class="btn btn-outline-primary btn-block active" href="/admin/user" role="button">AboutAdmin</a>
+            </div>
+
         </nav>
 
         <div class="container bg-light secondary col-sm-10 vh-100">
             <br>
-            <h1 class="card-title">User information-page</h1>
+            <h1 class="card-title">About Admin information-page</h1>
 
-            <h5 class="card-header">About User</h5>
+            <h5 class="card-header">About Admin</h5>
             <div class="bg-white p-3">
                 <table class="table table-striped">
                     <thead>
@@ -69,7 +70,6 @@
                         <td th:text="${user.username}"></td>
                         <td th:text="${user.email}"></td>
                         <td th:text="${#strings.toString(user.roles).replace('[','').replace(']','')}">
-                        </td>
                         <td th:text="${user.age}"></td>
                     </tr>
                     </tbody>
